@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+.rectangle {
+display: block;
+height: 36vh;
+position: relative;
+width: 300px;
+left: 50vw;
+border: solid #F5F5F5;
+position: absolute;
+overflow: auto;
+margin-left: -150px;}
+
+
+
+    </style>
+</head>
+<body>
+<center>
+    <div class=""><h1>Зарегистрироваться</h1></div>
+</center>
+
+<div class="rectangle">
+    <form action="" method="post" novalidate>
+        <center>
+            <p>
+                {{ form.hidden_tag() }}
+
+                {{ form.email.label }}<br>
+                {{ form.email(class="form-control", type="email") }}<br>
+                {% for error in form.email.errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+            {% endfor %}
+            </p>
+            <p>
+                {{ form.name.label }}<br>
+                {{ form.name(class="form-control") }}<br>
+                {% for error in form.name.errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+            {% endfor %}
+            </p>
+            <p>
+                {{ form.password.label }}<br>
+                {{ form.password(class="form-control, type='password") }}<br>
+                {% for error in form.password.errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+            {% endfor %}
+            </p>
+            <p>
+                {{ form.Reapeat_password.label }}<br>
+                {{ form.Reapeat_password(class="form-control, type='password") }}<br>
+                {% for error in form.Reapeat_password.errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+            {% endfor %}
+            {% if form.Reapeat_password.data != form.password.data %}
+            <div class="alert alert-danger" role="alert">
+                пароли разные
+
+            </div>
+            {% endif %}
+            </p>
+            <p>
+            <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p></p>
+        </center>
+    </form>
+</div>
+</body>
+</html>

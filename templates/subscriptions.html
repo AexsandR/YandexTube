@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+.rectangle {
+display: block;
+height: 30%;
+position: relative;
+width: 30%;
+left: 35vw;
+position: absolute;
+overflow: auto;
+}
+</style>
+{% if channels%}
+<center><h1>ваши подписки</h1></center>
+<div class="rectangle">
+    {% for channel in channels %}
+    <br>
+    <a href="/channel&id={{channel.id}}"><img
+            src="{{ url_for('static', filename=channel.image) }}"
+            style="height:56px">
+        {{channel.name}}</a>
+    <br>
+    {% endfor %}
+</div>
+<div style="height: 35%"></div>
+<center>
+    <div class="container">
+        <div class="row">
+            {% for elem in data %}
+            <div class="col-sm-6">
+                <a class="card" href="/watch_video/id={{elem.id}}">
+                    <img src="./static/video/poster/{{elem.id}}.png" class="{card-img-top}" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {{elem.name}}
+                        </h5>
+                    </div>
+                </a>
+                <br>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</center>
+{%else%}
+<center>
+    <h1>тут ничего нет</h1>
+</center>
+{%endif%}
+{% endblock %}

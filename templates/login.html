@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<style>
+.rectangle {
+display: block;
+height: 25vh;
+position: relative;
+width: 300px;
+left: 50vw;
+border: solid #F5F5F5;
+position: absolute;
+overflow: auto;
+margin-left: -150px}
+
+
+
+</style>
+<center>
+    <div class=""><h1>Войти</h1></div>
+        <a href="reg">регистрация</a>
+
+</center>
+
+<div class="rectangle">
+    <form action="" method="post" novalidate>
+        <center>
+            <p>
+                {{ form.hidden_tag() }}
+
+                {{ form.email.label }}<br>
+                {{ form.email(class="form-control", type="email") }}<br>
+                {% for error in form.email.errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+            {% endfor %}
+            </p>
+            <p>
+                {{ form.password.label }}<br>
+                {{ form.password(class="form-control, type='password") }}<br>
+                {% for error in form.password.errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+            {% endfor %}
+            </p>
+            <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+            <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p></p></center>
+    </form>
+</div>
+</body>
+</html>
