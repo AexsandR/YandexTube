@@ -1,0 +1,46 @@
+{% extends "base1.html" %}
+{% block content %}
+<style>
+.rectangle {
+display: block;
+height: 25vh;
+position: relative;
+width: 300px;
+left: 50vw;
+border: solid #F5F5F5;
+position: absolute;
+overflow: auto;
+margin-left: -150px}
+
+
+
+
+</style>
+<form action="" method="post" name="simple" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <center>
+        {{form.photo_user.label}}<br>
+        {{form.photo_user}}<br><br>
+        {% for error in form.photo_user.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+        {% endfor %}
+        {{form.video_user.label}}<br>
+        {{form.video_user}}<br><br>
+        {% for error in form.video_user.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+        {% endfor %}
+        {{form.name.label}}<br>
+        {{form.name()}}<br><br>
+        {% for error in form.name.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+        {% endfor %}
+        {{ form.submit(type="submit", class="btn btn-primary") }}
+    </center>
+</form>
+{% endblock %}

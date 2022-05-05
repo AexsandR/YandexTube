@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="font-monospace" style="text-align: center"> <b> Авторизация </b> </h1>
+
+    <form action="" class="login_form" method="post" style="width: 100%;">
+        {{ form.hidden_tag() }}
+        <p class="font-monospace">
+            {{ form.login.label }} <br>
+            {% if (error == 1) %}
+                {{ form.login(class="form-control is-invalid", type="text") }}
+            {% else %}
+                {{ form.login(class="form-control", type="text") }}
+            {% endif %}
+
+            {% if (not form.login.erorrs) %}
+                <br>
+            {% endif %}
+            {% for error in form.login.errors %}
+                <div class="alert alert-danger font-monospace" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        <p class="font-monospace">
+            {{ form.password.label }} <br>
+            {% if (error == 2) %}
+                {{ form.password(class="form-control is-invalid", type="password") }}
+            {% else %}
+                {{ form.password(class="form-control", type="password") }}
+            {% endif %}
+
+            {% if (not message) %}
+                <br>
+            {% endif %}
+            {% for error in form.password.errors %}
+                <div class="alert alert-danger font-monospace" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        <p class="text-danger font-monospace"> <b> {{ message }} </b> </p>
+        <p class="font-monospace"> {{ form.remember_me() }} {{ form.remember_me.label }} </p>
+        <p class="font-monospace"> {{ form.submit(type="submit", class="btn btn-primary") }} </p>
+    </form>
+{% endblock %}

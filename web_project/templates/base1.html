@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<div class="container">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/YandexTube">
+                <img src="{{ url_for('static', filename='images/logo.png') }}"
+                     alt="..."></a>
+
+            <form class="d-flex" style="height:56px" method="post">
+                <input id="search" name="search" type="text" class="form-control mr-sm-2" placeholder="Поиск" style="height:56px">
+                <button type="submit" class="btn btn-outline-warning" style="color: #ffcc00">Поиск</button>
+            </form>
+            <ul class="navbar-nav">
+                {% if current_user.is_authenticated %}
+
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+
+                         <img src=/static/images/users/{{ current_user.image }} width="50" height="50" style="border-radius: 50%;">
+
+
+
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/user/" style="color: #ffcc00">сайт секретной организации</a></li>
+                        <li><a class="dropdown-item" href="/upload_video" style="color: #ffcc00">выложить видео</a></li>
+                        <li><a class="dropdown-item" href="/subscriptions" style="color: #ffcc00">подписки</a></li>
+                        <li><a class="dropdown-item" href="/channel/{{current_user.id}}" style="color: #ffcc00">о канале</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+            {% else %}
+                        <form class="d-flex" style="height:56px">
+                            <a href="/"><button type="button" class="btn btn-outline-danger"  style="height:56px" >Войти</button></a>
+                        </form>
+            {% endif %}
+
+        </div>
+    </nav>
+</div>
+<main role="main">
+    {% block content %}{% endblock %}
+</main>

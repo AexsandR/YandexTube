@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div id="content">
+        <div id="head">
+            <h5 id="title" class="font-monospace"> <b> Доступ к данному файлу разрешён только сотрудникам с уровнем допуска {{ access }}. </b> </h5>
+        </div>
+
+        <div id="body" class="font-monospace" style="width: 82%; margin: 0 9% 0 9%;">
+            <p style="margin-top: 1rem;">Попытка осуществления доступа к данному файлу в отсутствие необходимого допуска является основанием для досрочного прекращения службы в Организации и отказа в пособии на образование, медицинской страховке, пенсии и компенсации по утрате кормильца. Ввод учётных данных с вашей стороны означает ваше согласие на просмотр изображения, представляющего опасность восприятия, и проверку, были ли вы вакцинированы от указанного изображения. В случае несанкционированного доступа данный терминал будет выведен из строя. По месту нахождения терминала будут отправлены сотрудники службы безопасности для проведения реанимации и конвоирования вас в камеру для допроса. Попытка просмотра данного файла с любого компьютера, не подключённого к локальной вычислительной сети <strong>Организации</strong>, карается устранением вне зависимости от уровня допуска.</p>
+            <div style="width: 100%; text-align: center;">
+                <strong class="reference" onclick="deny(); this.innerHTML = '[УЧЁТНЫЕ ДАННЫЕ НЕКОРРЕКТНЫ]';"> [ВВЕСТИ УЧЁТНЫЕ ДАННЫЕ: ТРЕБУЕТСЯ ДОПУСК {{ access }}] </strong>
+            </div>
+            <blockquote id="hack" style="display: none;">
+                <p style="margin-bottom: 0;">
+                    Обнаружено несоответствие данных и уровня допуска. Доступ к странице был ограничен.
+                </p>
+                <p>
+                    Ваш IP-адрес ({% for part in ip.split('.') %}<span class="hide">{{ part }}</span>{% if (not loop.last) %}.{% endif %}{% endfor %}) был передан в технический отдел для дальнейшего <strong>[УДАЛЕНО]</strong>.
+                </p>
+                <p id="loading" count=20></p>
+                <p style="margin-bottom: 0;">
+                    Внимание, бойцы <strong>МОГ <span class="hide">Гамма-5</span></strong> были высланы по вашему адресу для физического устранения. Пожалуйста, оставайтесь на месте.
+                </p>
+            </blockquote>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript">
+        function deny() {
+            var hack = document.getElementById("hack");
+            hack.style = "margin-top: 1rem;";
+
+            var loading = document.getElementById("loading");
+            var count = loading.getAttribute("count");
+            loading.innerHTML = "Вычисление [<strong style='color: green;'>" + "#".repeat(count) + "</strong>] 100%.";
+        }
+    </script>
+{% endblock %}

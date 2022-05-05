@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        {% block link_0 %} {% endblock %}
+        <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/preloader.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/articles.css">
+        {% block link_n %} {% endblock %}
+        <script type="text/javascript" src="/static/js/search.js"></script>
+        <title> {{title}} </title>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="z-index: 999;">
+                <div class="container-fluid">
+                    <a class="navbar-brand font-monospace" href="/">
+                        <img src="/static/images/background.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                        SCP-Foundation
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                        <div class="d-flex">
+                            <input class="form-control me-2 font-monospace" id="search1" placeholder="Search" aria-label="Search" value="{{ find }}">
+                            <button class="btn btn-outline-success font-monospace" type="submit" onclick='search();'> Search </button>
+                        </div>
+
+                        <ul class="navbar-nav mr-auto">
+                            {% if (current_user.is_authenticated) %}
+                                <li class="nav-item dropdown">
+                                    <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdownMenu">
+                                        <button class="btn btn-default dropdown-toggle navbar-brand" type="button" id="navbarDropdownMenuLink" data-toggle="dropdown" role="button" aria-haspopup="true" data-bs-toggle="dropdown" aria-expanded="false">
+                                            {{ current_user.name }}
+                                            <img src=/static/images/users/{{ current_user.image }} width="30" height="30" style="border-radius: 50%;">
+                                        </button>
+
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a class="dropdown-item font-monospace" href="/user"> Ваш профиль </a>
+                                            <a class="dropdown-item font-monospace" href="/user/articles"> Ваши статьи <span class="badge rounded-pill bg-secondary font-monospace"> {{ current_user.articles.__len__() }} </span> </a>
+                                            <a class="dropdown-item font-monospace" href="/channel/{{current_user.id}}"> Ваши видео </a>
+                                            <a class="dropdown-item font-monospace" href="/user/chat"> Чаты </a>
+                                            <a class="dropdown-item font-monospace" href="/user/settings"> Настройки </a>
+                                            <div class="dropdown-item">
+                                                <a class="btn btn-outline-danger font-monospace" href="/logout" style="width: 100%;"> Выйти </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% else %}
+                                <li class="nav-item">
+                                    <a class="btn btn-outline-light me-md-2 font-monospace" href="/register"> Зарегистрироваться </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="btn btn-success font-monospace" href="/login"> Войти </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div id="page-preloader" class="preloader">
+            <div class="loader"></div>
+        </div>
+
+        {% block content %}{% endblock %}
+
+
+        <script type="text/javascript" src="/static/js/preloader.js"></script>
+        <script type="text/javascript" src="/static/js/bootstrap.bundle.min.js"></script>
+        {% block script %}{% endblock %}
+    </body>
+</html>

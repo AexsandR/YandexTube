@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- <h1 class="center font-monospace"> <b> Страница на доработке, <br> пожалуйста, обратитесь к администратору. </b> </h1> -->
+    <h1 class="font-monospace" style="text-align: center"> <b> Настройки </b> </h1>
+<!--
+    "{{ form.login }}"
+    "{{ form.name }}"
+    "{{ form.email }}"
+-->
+    <form action="" class="login_form" method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <p class="font-monospace">
+            {{ form.name.label }} <br>
+            {{ form.name(class="form-control", type="text") }}
+        </p>
+        <p class="font-monospace">
+            {{ form.login.label }} <br>
+            {{ form.login(class="form-control", type="text") }}
+        </p>
+        <p class="font-monospace">
+            {{ form.email.label }} <br>
+            {{ form.email(class="form-control", type="email", placeholder=(current_user.login.replace(" ", "_").lower() + "@yandex.ru")) }}
+        </p>
+        <p class="font-monospace">
+            {{ form.password.label }}
+            {{ form.password(class="form-control", type="password", placeholder="••••••••") }}
+        </p>
+        <p class="font-monospace">
+            {{ form.image.label }}
+            <img src=/static/images/users/{{ current_user.image }} width="30" height="30" style="border-radius: 50%;"> <br> <br>
+            {{ form.image(class="form-control", type="file") }}
+        </p>
+        <p class="text-danger font-monospace"> <b> {{ message }} </b> </p>
+        <p class="font-monospace"> {{ form.submit(type="submit", class="btn btn-primary") }} </p>
+    </form>
+{% endblock %}

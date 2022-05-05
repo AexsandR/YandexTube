@@ -1,0 +1,51 @@
+body {
+    height: 100vh;
+    background-image: url("/static/images/background.svg");
+    -moz-background-size: 25%;
+    -webkit-background-size: 25%;
+    -o-background-size: 25%;
+    background-size: 25%;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    flex-flow: column;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    height: 80%;
+}
+
+form.login_form {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 450px;
+    background-color: rgba(217, 217, 217, .5);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    -moz-backdrop-filter: blur(3px);
+    -o-backdrop-filter: blur(3px);
+    -ms-backdrop-filter: blur(3px);
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.opacity-50 {
+    opacity: 0.5;
+}
+
+.opacity-75 {
+    opacity: 0.75;
+}
+
+.opacity-90 {
+    opacity: 0.90;
+}
+
+.opacity-100 {
+    opacity: 1;
+}

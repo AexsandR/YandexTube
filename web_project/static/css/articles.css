@@ -1,0 +1,52 @@
+blockquote {
+    position: absolute;
+    width: 73%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border: 1px dashed #999;
+    padding: 1rem;
+    background-color: #f4f4f4;
+}
+
+#title {
+    width: 60%;
+    margin: 0.5rem 20% 0 20%;
+    padding-bottom: 0.5rem;
+    text-align: center;
+    border-bottom: 1px solid #858e97;
+}
+
+#body {
+    width: 90%;
+    margin: 0 5% 0 5%;
+    padding: 0.5rem 1rem 0 1rem;
+}
+
+.image-card {
+    float: left;
+    width: 35%;
+    padding: 0.5rem;
+    margin-right: 1rem;
+    text-decoration: none;
+    color: black;
+}
+
+.card-image {
+    border-radius: 0.25rem;
+}
+
+.hide {
+    color: black;
+    background-color: black;
+}
+
+.reference {
+    color: #b01;
+    text-decoration: none;
+}
+
+.reference:hover {
+    color: #b01;
+    text-decoration: underline;
+    cursor: pointer;
+}

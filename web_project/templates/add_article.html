@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form action="" class="login_form" style="margin-top: 8%;" method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <p class="font-monospace">
+            {{ form.link.label }} <br>
+            {{ form.link(class="form-control", type="text") }}
+        </p>
+        <p class="font-monospace">
+            {{ form.title.label }} <br>
+            {{ form.title(class="form-control", type="text") }}
+        </p>
+        <p class="font-monospace">
+            {{ form.description.label }} <br>
+            {{ form.description(class="form-control", type="text") }}
+        </p>
+        <p class="font-monospace">
+            {{ form.file.label }}
+            {{ form.file(class="form-control", type="file") }}
+        </p>
+        <p class="text-danger font-monospace"> <b> {{ message }} </b> </p>
+        <p class="font-monospace"> {{ form.submit(type="submit", class="btn btn-primary") }} </p>
+    </form>
+{% endblock %}

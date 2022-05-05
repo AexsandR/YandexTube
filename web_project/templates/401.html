@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if (randint(0, 1000) == 0) %}
+        <h1 class="center font-monospace"> <b> Оставь надежду, всяк сюда входящий! </b> </h1>
+    {% else %}
+        <h1 class="center font-monospace"> <b> Доступ запрещён! <br> Пользователь не зарегистрирован в системе! </b> </h1>
+    {% endif %}
+{% endblock %}

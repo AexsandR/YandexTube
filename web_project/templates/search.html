@@ -1,0 +1,58 @@
+{% extends "base1.html" %}
+{% block content %}
+
+<style>
+.rectangle {
+display: block;
+height: 30%;
+position: relative;
+width: 30%;
+left: 35vw;
+position: absolute;
+overflow: auto;
+}
+
+
+</style>
+
+{% if channels or data %}
+{% if channels %}
+<div class="rectangle">
+    <center>
+        {% for channel in channels %}
+        <br>
+<a href="/channel/{{channel.id}}"><img
+                    src="/static/images/users/{{channel.image}}"
+                    style="border-radius: 50%;"  width="50" height="50">
+                {{channel.name}}</a>
+        <br>
+        {% endfor %}
+    </center>
+</div>
+<div style="height: 35%"></div>
+{% endif %}
+{% if data %}
+<center>
+     <div class="container">
+        <div class="row">
+            {% for elem in data %}
+            <div class="col-sm-6">
+                <a class="card" href="/watch_video/{{elem[0]}}">
+                    <img src="{{ elem[1] }}" class="{card-img-top}" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {{elem[-1]}}
+                        </h5>
+                    </div>
+                </a>
+                <br>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</center>
+{% endif %}
+{% else %}
+<center><h1>ничего не нашлось</h1></center>
+{% endif %}
+{% endblock %}

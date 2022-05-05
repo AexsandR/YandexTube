@@ -1,0 +1,106 @@
+{% extends "base1.html" %}
+
+{% block content %}
+<style>
+.video_set
+{
+    position: relative;
+    aspect-ratio: 16 / 9;
+}
+.split {
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+/* Control the left side */
+.left {
+  width: 65%;
+  left: 0;
+}
+/* Control the right side */
+.right {
+  width: 45%;
+  right: -2%;
+}
+/* If you want the content centered horizontally and vertically */
+.centered {
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.rectangle {
+height:76vh;
+position: relative;
+width: 55vw;
+position: absolute;
+overflow: auto;
+word-break:break-all;
+}
+
+</style>
+
+<div class="split left">
+    <div class="rectangle" style="direction: rtl;">
+        <div style="direction: ltr;">
+            <video preloader="metadata" controls class="video_set" width="100%" height="(width / 16*9)">
+                <source src="{{path}}" type="video/mp4">
+            </video>
+            <br>
+            <h5>{{video.name}}</h5>
+            <h5>{{video.views}} views</h5>
+            <form method="post" enctype="multipart/form-data"><a href="/channel/{{video.owner}}"><img
+                    src="{{logo_channel}}"
+                    style="border-radius: 50%;"  width="50" height="50">
+                {{channel.name}}</a>
+                {% if channel.id == current_user.id%}
+                {% elif status_sub %}
+                <a type="submit" href="/subscribe/{{video.id}}" class="btn btn-outline-danger">Подписаться</a>
+
+                {% else %}
+                {% if current_user.is_authenticated %}
+                <a type="submit" href="/describe/{{video.id}}" class="btn btn-outline-warning">описаться</a>
+                {% endif %}
+                {% endif %}
+            </form>
+            <div>folowers: {{channel.folowers}} date: {{video.date}}</div>
+            <h5>Comments:</h5>
+            {% if current_user.is_authenticated %}
+            <form action="" method="post" novalidate>
+                {{ form.hidden_tag() }}
+                {{ form.comment}}{{form.send_comment(type="submit", class="btn btn-warning")}}
+            </form>
+            {%endif%}
+            {% for comment in comments %}
+            <div><a href="/channel/{{comment[0].id}}">{{comment[0].name}}</a>: {{comment[1].text}}</div>
+            <br>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="split right">
+    <div class="rectangle">
+        {% for elem in videos %}
+        {% if elem.id != video.id%}
+        <a class="card mb-3" style="width: 75%;" href="/watch_video/{{elem.id}}" width="100%"
+           height="(width / 16*9)px">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="/static/video/poster/{{elem.id}}.png" class="{card-img-top}" width="100%"
+                         height="(width / 16*9)" alt="...">
+                </div>
+                <div class="col-md-8" width="100%" height="(width / 16*9)px">
+                    <div class="card-body">
+                        <h5 class="card-title">{{elem.name}}</h5>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

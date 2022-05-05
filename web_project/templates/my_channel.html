@@ -1,0 +1,46 @@
+{% extends "base1.html" %}
+{% block content %}
+<center>
+    <h1>дата создания канала</h1>
+    <h4>{{time}}</h4>
+    <br>
+    <h1>имя канала</h1>
+    <h4>{{current_user.name}}</h4>
+    <br>
+    <h1>всего подписчиков</h1>
+    <h4>{{folowers}}</h4>
+    <br>
+    {% if video %}
+    <h1>самое просматриваемое видео на канале</h1>
+    <h4>{{video.views}}</h4>
+    <div class="col-sm-6">
+        <a class="card" href="/watch_video/{{video.id}}">
+            <img src="/static/video/poster/{{video.id}}.png" class="{card-img-top}" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{video.name}}
+                </h5>
+            </div>
+        </a></div>
+    <br>
+    <h1>видео канала</h1>
+    <div class="container">
+        <div class="row">
+            {% for elem in data %}
+            <div class="col-sm-6">
+                <a class="card" href="/watch_video/{{elem.id}}">
+                    <img src="/static/video/poster/{{elem.id}}.png" class="{card-img-top}" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {{elem.name}}
+                        </h5>
+                    </div>
+                </a>
+                <br>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</center>
+{% endblock %}
