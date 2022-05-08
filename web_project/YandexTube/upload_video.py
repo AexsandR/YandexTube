@@ -24,7 +24,7 @@ def video():
         video_user = form.video_user.data
         video_user_filename = secure_filename(video_user.filename)
         photo_user_filename = secure_filename(photo_user.filename)
-        if '.mp4' in video_user_filename and ".png" in photo_user_filename:
+        if 'mp4' in video_user_filename.split('.')[-1] and "png" in photo_user_filename.split('.')[-1]:
             video = Video()
             video.name = form.name.data
             video.owner = current_user.id
