@@ -9,7 +9,7 @@ from werkzeug.utils import secure_filename
 from YandexTube.setting_img import setting_image
 from data.forms import uploud
 
-
+#
 blueprint = flask.Blueprint(
     'upload_video',
     __name__,
